@@ -2207,7 +2207,8 @@
         min-width: 0;
       }
       .calendar-title > span:last-child {
-        overflow-wrap: anywhere;
+        overflow-wrap: break-word;
+        word-break: normal;
       }
       .calendar-title-icon {
         flex-shrink: 0;
@@ -2577,24 +2578,14 @@
         font-variant-numeric: tabular-nums;
         letter-spacing: 0.1px;
       }
-      .today-section .address-details {
+      .today-section .location {
         margin: 10px 0 4px;
-      }
-      .today-section .address-details summary {
         font-size: 14px;
         color: #67756c;
-        font-weight: 400;
-        gap: 8px;
       }
-      .today-section .address-details summary svg {
-        width: 18px;
+      .today-section .location svg {
+        width: 15px;
         height: 18px;
-        flex-shrink: 0;
-      }
-      .today-section .address-details summary > span {
-        color: #4d7a3f;
-        font-weight: 500;
-        font-size: 14px;
       }
       .today-section .back-today {
         margin-bottom: 10px;
@@ -2620,6 +2611,66 @@
         .today-section .featured .time {
           font-size: 16px;
         }
+      }
+
+      /* 进一步收紧"今日课程"标题行与日期行、以及课程名/时间/地点之间的行间距 */
+      .today-section .section-head {
+        gap: 0;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+      }
+      .today-section .featured .time {
+        margin-top: 4px;
+      }
+      .today-section .location {
+        margin: 4px 0 2px;
+      }
+      @media (max-width: 650px) {
+        .today-section .section-head {
+          margin-bottom: 8px;
+          padding-bottom: 6px;
+        }
+      }
+
+      /* "一周安排"标题独占一行，靠左对齐 */
+      .week-section .section-head {
+        justify-content: flex-start;
+        margin-bottom: 16px;
+      }
+      /* 日期区间放在"本周"分页下方，文字样式与"今日课程"的日期显示一致 */
+      .week-range {
+        display: block;
+        margin: 10px 0 16px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--ink);
+      }
+      /* 时间前加小闹钟图标，与下方"上课地点"图标左右对齐 */
+      .time {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .time svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        color: #8d988c;
+      }
+      .today-section .time svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      /* 管理课程入口加一个管理员小图标 */
+      .admin-entry button {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .admin-entry button svg {
+        width: 16px;
+        height: 16px;
       }
     </style>
   </head>
@@ -15167,7 +15218,12 @@ Error generating stack: ` +
             S.default.createElement(
               "div",
               { className: "admin-entry" },
-              S.default.createElement("button", { onClick: Tl }, "\u7BA1\u7406\u8BFE\u7A0B"),
+              S.default.createElement(
+                "button",
+                { onClick: Tl },
+                S.default.createElement(Gh, null),
+                "\u7BA1\u7406\u8BFE\u7A0B",
+              ),
             ),
             S.default.createElement(
               "dialog",
@@ -15750,6 +15806,37 @@ Error generating stack: ` +
                 fill: "#fff",
                 stroke: "none",
               }),
+            ),
+          Ch = () =>
+            p.default.createElement(
+              "svg",
+              {
+                viewBox: "0 0 24 24",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: "1.8",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                "aria-hidden": "true",
+              },
+              p.default.createElement("circle", { cx: "12", cy: "12", r: "9" }),
+              p.default.createElement("path", { d: "M12 7.5v4.8l3.2 1.9" }),
+            ),
+          Gh = () =>
+            p.default.createElement(
+              "svg",
+              {
+                viewBox: "0 0 24 24",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: "1.8",
+                strokeLinecap: "round",
+                "aria-hidden": "true",
+              },
+              p.default.createElement("path", { d: "M4 7h10M18 7h2" }),
+              p.default.createElement("circle", { cx: "16", cy: "7", r: "2" }),
+              p.default.createElement("path", { d: "M4 17h2M10 17h10" }),
+              p.default.createElement("circle", { cx: "8", cy: "17", r: "2" }),
             );
         function Nh({ course: l, large: t = !1, onNavigate: a }) {
           return p.default.createElement(
@@ -15772,6 +15859,7 @@ Error generating stack: ` +
             p.default.createElement(
               "div",
               { className: "time" },
+              p.default.createElement(Ch, null),
               yi(l.start),
               " ",
               p.default.createElement("span", null, "\u2014"),
@@ -15785,16 +15873,10 @@ Error generating stack: ` +
                 "\u8BFE\u7A0B\u5B89\u6392\u6709\u8C03\u6574",
               ),
             p.default.createElement(
-              "details",
-              { className: "address-details" },
-              p.default.createElement(
-                "summary",
-                null,
-                p.default.createElement(Ah, null),
-                "\u4E0A\u8BFE\u5730\u70B9",
-                p.default.createElement("span", null, "\u67E5\u770B\u5730\u5740"),
-              ),
-              p.default.createElement("p", null, l.address),
+              "div",
+              { className: "location" },
+              p.default.createElement(Ah, null),
+              p.default.createElement("span", null, l.address),
             ),
             l.note &&
               p.default.createElement(
@@ -15845,8 +15927,7 @@ Error generating stack: ` +
           let [n, i] = (0, p.useState)(""),
             [c, f] = (0, p.useState)(""),
             [y, r] = (0, p.useState)(null),
-            v = (0, p.useRef)(null),
-            [d, m] = (0, p.useState)(!1);
+            v = (0, p.useRef)(null);
           ((0, p.useEffect)(() => {
             let T = "",
               M = () => {
@@ -15987,11 +16068,6 @@ Error generating stack: ` +
                   null,
                   p.default.createElement("h2", { id: "week-heading" }, "\u4E00\u5468\u5B89\u6392"),
                 ),
-                p.default.createElement(
-                  "span",
-                  { className: "week-range" },
-                  E ? `${Ue(E)} \u2014 ${Ue(Ut(E, 6))}` : "",
-                ),
               ),
               p.default.createElement(
                 "div",
@@ -16011,23 +16087,16 @@ Error generating stack: ` +
                     "\u203A",
                   ),
                 ),
-                p.default.createElement(
-                  "button",
-                  { className: "week-zoom", "aria-pressed": d, onClick: () => m(!d) },
-                  d ? "\u603B\u89C8" : "\u653E\u5927",
-                ),
               ),
               p.default.createElement(
-                "p",
-                { className: "week-hint" },
-                d
-                  ? "\u5DE6\u53F3\u6ED1\u52A8 \xB7 \u70B9\u51FB\u8BFE\u7A0B\u67E5\u770B\u8BE6\u60C5"
-                  : "\u70B9\u51FB\u8BFE\u7A0B\u67E5\u770B\u8BE6\u60C5",
+                "span",
+                { className: "week-range" },
+                E ? `${Ue(E)} \u2014 ${Ue(Ut(E, 6))}` : "",
               ),
               p.default.createElement(
                 "div",
                 {
-                  className: `time-calendar-scroll ${d ? "zoomed" : ""}`,
+                  className: "time-calendar-scroll",
                   tabIndex: 0,
                   "aria-label":
                     "\u4E00\u5468\u65F6\u95F4\u8BFE\u8868\uFF0C\u53EF\u6A2A\u5411\u6EDA\u52A8",
