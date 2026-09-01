@@ -1,365 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>课程表</title>
-    <meta name="description" content="查看一周课程、上课时间和接送地点。" />
-    <meta name="application-name" content="课程表" />
-    <meta name="apple-mobile-web-app-title" content="课程表" />
-    <meta name="theme-color" content="#2d5947" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="zh_CN" />
-    <meta property="og:site_name" content="课程表" />
-    <meta property="og:title" content="课程表" />
-    <meta property="og:description" content="查看一周课程、上课时间和接送地点。" />
-    <meta property="og:image" content="./share-cover.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
-    <meta property="og:image:alt" content="课程表图标" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="课程表" />
-    <meta name="twitter:description" content="查看一周课程、上课时间和接送地点。" />
-    <meta name="twitter:image" content="./share-cover.png" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="data:image/png;base64,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"
-    />
-    <link rel="apple-touch-icon" href="./share-cover.png" />
-    <link rel="image_src" href="./share-cover.png" />
-    <style>
-      :root {
-        --ink: #1e2923;
-        --muted: #5c6b61;
-        --green: #244839;
-        --green-hover: #1b362b;
-        --line: #e2e5dc;
-        --paper: #f7f8f4;
-        --white: #ffffff;
-        --primary-shadow: 0 4px 20px -2px rgba(36, 72, 57, 0.08);
-        --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      button,
-      a,
-      select {
-        -webkit-tap-highlight-color: transparent;
-      }
-      button,
-      select {
-        font: inherit;
-      }
-      button,
-      a,
-      select {
-        touch-action: manipulation;
-      }
-      button {
-        cursor: pointer;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      button:hover {
-        transform: translateY(-1px);
-      }
-      button:active {
-        transform: translateY(0);
-      }
-      button:focus-visible,
-      a:focus-visible,
-      select:focus-visible {
-        outline: 3px solid #2d5947;
-        outline-offset: 2px;
-      }
-      button:disabled {
-        opacity: 0.4;
-        transform: none !important;
-        cursor: not-allowed;
-      }
-      .shell {
-        max-width: 1080px;
-        padding: 0 24px;
-        margin: auto;
-      }
-      .masthead {
-        height: 80px;
-        border-bottom: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: rgba(247, 248, 244, 0.85);
-        backdrop-filter: blur(8px);
-        position: sticky;
-        top: 0;
-        z-index: 10;
-      }
-      .brand {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-      }
-      .brand-icon {
-        width: 40px;
-        height: 40px;
-        display: grid;
-        place-items: center;
-        background: #e2ebdf;
-        border-radius: 12px;
-        font-size: 24px;
-        color: #485c3b;
-      }
-      .brand-sub {
-        display: block;
-        font-size: 10px;
-        letter-spacing: 1.5px;
-        margin-top: 3px;
-        font-weight: 600;
-        color: var(--muted);
-      }
-      .family-label {
-        font-size: 13px;
-        color: var(--muted);
-        border: 1px solid var(--line);
-        padding: 6px 14px;
-        border-radius: 20px;
-        background: var(--white);
-        box-shadow: var(--card-shadow);
-      }
-      .intro {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-        padding: 36px 0 20px;
-      }
-      .eyebrow {
-        font-size: 12px;
-        letter-spacing: 1.5px;
-        color: #4a6b46;
-        font-weight: 700;
-        margin: 0 0 8px;
-        text-transform: uppercase;
-      }
-      .intro .eyebrow {
-        font-size: 12px;
-        letter-spacing: 2px;
-      }
-      h1 {
-        font-size: 32px;
-        letter-spacing: -0.5px;
-        line-height: 1.25;
-        margin: 0;
-        font-weight: 800;
-      }
-      .subtitle {
-        color: var(--muted);
-        font-size: 15px;
-        margin: 10px 0 0;
-      }
-      .share {
-        min-height: 44px;
-        border: 1px solid #cbd5c5;
-        background: var(--white);
-        border-radius: 12px;
-        padding: 0 16px;
-        font-weight: 600;
-        color: var(--green);
-        white-space: nowrap;
-        box-shadow: var(--card-shadow);
-        display: inline-flex;
-        align-items: center;
-      }
-      .share:hover {
-        background: #f0f4ee;
-        border-color: var(--green);
-      }
-      .share span {
-        padding-left: 8px;
-        font-size: 18px;
-      }
-      .settings {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 0 0 24px;
-        font-size: 13px;
-        color: var(--muted);
-      }
-      .dot {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        background: #4a6b46;
-        border-radius: 50%;
-        margin-right: 6px;
-      }
-      .settings label {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        background: var(--white);
-        padding: 4px 12px;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        box-shadow: var(--card-shadow);
-      }
-      .settings select {
-        min-height: 36px;
-        border: 0;
-        background: transparent;
-        color: var(--ink);
-        font-weight: 600;
-        cursor: pointer;
-      }
-      .today-section {
-        background: #eef2ea;
-        border: 1px solid #d4decb;
-        border-radius: 24px;
-        padding: 28px;
-        margin-bottom: 36px;
-        box-shadow: var(--primary-shadow);
-      }
-      .section-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 15px;
-        margin-bottom: 20px;
-      }
-      h2 {
-        font-size: 22px;
-        font-weight: 700;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .count {
-        font-size: 12px;
-        font-weight: 600;
-        color: #3b5439;
-        background: #d8e4cf;
-        padding: 4px 10px;
-        border-radius: 20px;
-      }
-      .date-navigation {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        background: var(--white);
-        padding: 4px;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        box-shadow: var(--card-shadow);
-      }
-      .date-navigation button {
-        border: 0;
-        background: #f4f7f1;
-        border-radius: 8px;
-        min-height: 36px;
-        min-width: 36px;
-        color: var(--green);
-        font-size: 18px;
-        display: grid;
-        place-items: center;
-      }
-      .date-navigation button:hover {
-        background: #e4ecd9;
-      }
-      .date-navigation span {
-        white-space: nowrap;
-        padding: 0 8px;
-        font-weight: 600;
-      }
-      .today-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 16px;
-      }
-      .course {
-        background: var(--white);
-        padding: 24px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        min-width: 0;
-        box-shadow: var(--card-shadow);
-        transition: all 0.25s ease;
-      }
-      .course:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-        border-color: #cbd5c5;
-      }
-      .course-top {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .course-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        flex-shrink: 0;
-        font-size: 18px;
-        font-weight: 700;
-      }
-      .blue {
-        background: #e4effb;
-        color: #3b5d8c;
-      }
-      .rose {
-        background: #fce8e3;
-        color: #a8523c;
-      }
-      .green {
-        background: #e4ede0;
-        color: #4b6b3c;
-      }
-      .amber {
-        background: #fcf1de;
-        color: #9e732b;
-      }
-      .course-heading {
-        min-width: 0;
-      }
-      .course-heading h3 {
-        font-size: 19px;
-        margin: 0 0 4px;
-        font-weight: 700;
-      }
-      .course-heading p {
-        font-size: 13px;
-        margin: 0;
-        color: var(--muted);
-      }
-      /* 保留原始代码中加载进来的其余动态样式与脚本逻辑 */
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassBoard - 课程预约与排课管理</title>
+    <!-- 引入 Tailwind CSS 加速现代UI渲染 -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      // 保持原有 React 脚本逻辑原封不动以确保功能完美运行
-      (function () {
-        // ... (此处保留您原代码后半段的全部 JS 逻辑和 React 挂载代码)
-      })();
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            DEFAULT: '#2D4A3E',
+                            dark: '#1E332B',
+                            light: '#3F6656'
+                        },
+                        cream: {
+                            DEFAULT: '#F4F1EA',
+                            dark: '#E2DCD0',
+                            light: '#FAF8F5'
+                        }
+                    }
+                }
+            }
+        }
     </script>
-  </body>
+    <style>
+        body {
+            background-color: #F4F1EA;
+            color: #2D4A3E;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- 顶部导航栏 -->
+    <header class="bg-forest text-cream shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wide">ClassBoard 🌿</h1>
+            <span class="text-xs bg-forest-light px-3 py-1 rounded-full text-cream-light">排课与预约管理</span>
+        </div>
+    </header>
+
+    <!-- 主体内容区 -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-6">
+        
+        <!-- 控制面板 / 筛选栏 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <h2 class="text-lg font-semibold text-forest">课程日程总览</h2>
+                <p class="text-xs text-gray-500">点击卡片可展开查看学员名单与详细信息</p>
+            </div>
+            <button onclick="addNewCourse()" class="w-full sm:w-auto bg-forest hover:bg-forest-dark text-cream text-sm font-medium px-4 py-2 rounded-xl transition shadow-sm">
+                + 新增课程
+            </button>
+        </div>
+
+        <!-- 课程列表容器 -->
+        <div id="course-list" class="space-y-4">
+            <!-- 示例课程卡片 1 -->
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-cream-dark transition hover:shadow-md relative">
+                <!-- 左侧状态指示色条（满额红色，正常绿色） -->
+                <div class="absolute left-0 top-0 bottom-0 w-2 bg-emerald-600"></div>
+                
+                <div class="p-5 pl-7 cursor-pointer" onclick="toggleCard(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-cream rounded-md text-forest-dark">周二 18:15 - 20:15</span>
+                            <h3 class="text-lg font-bold text-forest mt-2">RSM-Katy 高阶数学班</h3>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-medium">名额充足</span>
+                    </div>
+                    
+                    <div class="mt-4 flex flex-wrap text-sm text-gray-600 gap-y-1 gap-x-4">
+                        <div>👩‍🏫 教师: <span class="font-medium text-gray-800">Mrs. Heather</span></div>
+                        <div>📍 地点: <span class="font-medium text-gray-800">RSM-Katy 校区</span></div>
+                    </div>
+                </div>
+
+                <!-- 默认折叠的详细内容 -->
+                <div class="hidden px-5 pb-5 pt-2 border-t border-cream bg-cream-light text-sm">
+                    <h4 class="font-semibold text-forest mb-2">已报名学员：</h4>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-white px-3 py-1 rounded-lg border border-cream-dark text-xs text-gray-700">Olivia</span>
+                        <span class="bg-white px-3 py-1 rounded-lg border border-cream-dark text-xs text-gray-700">Student B</span>
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button class="text-xs bg-white border border-forest text-forest px-3 py-1.5 rounded-lg hover:bg-forest hover:text-white transition">编辑课程</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 示例课程卡片 2 -->
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-cream-dark transition hover:shadow-md relative">
+                <div class="absolute left-0 top-0 bottom-0 w-2 bg-emerald-600"></div>
+                
+                <div class="p-5 pl-7 cursor-pointer" onclick="toggleCard(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-cream rounded-md text-forest-dark">周三 16:45 - 18:15</span>
+                            <h3 class="text-lg font-bold text-forest mt-2">Enrichminds 表演课 (Level 1)</h3>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-medium">进行中</span>
+                    </div>
+                    
+                    <div class="mt-4 flex flex-wrap text-sm text-gray-600 gap-y-1 gap-x-4">
+                        <div>📍 地点: <span class="font-medium text-gray-800">26717 Westheimer Pkwy, Suite 504</span></div>
+                    </div>
+                </div>
+
+                <div class="hidden px-5 pb-5 pt-2 border-t border-cream bg-cream-light text-sm">
+                    <h4 class="font-semibold text-forest mb-2">已报名学员：</h4>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-white px-3 py-1 rounded-lg border border-cream-dark text-xs text-gray-700">Olivia</span>
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button class="text-xs bg-white border border-forest text-forest px-3 py-1.5 rounded-lg hover:bg-forest hover:text-white transition">编辑课程</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="text-center py-6 text-xs text-gray-500">
+        ClassBoard &copy; 2026 - Designed with Forest & Cream Aesthetics
+    </footer>
+
+    <!-- 交互脚本 -->
+    <script>
+        // 移动端折叠/展开卡片交互
+        function toggleCard(element) {
+            const details = element.nextElementSibling;
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+            } else {
+                details.classList.add('hidden');
+            }
+        }
+
+        function addNewCourse() {
+            alert('在这里可以接入你的表单弹窗或 Firebase 数据写入逻辑！');
+        }
+    </script>
+</body>
 </html>
