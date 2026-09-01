@@ -2672,6 +2672,148 @@
         width: 16px;
         height: 16px;
       }
+
+      /* Accessible daily pickup card. All overrides scoped to daily section. */
+      .today-section { padding: 26px 24px 28px; border-radius: 22px; min-height: 70svh; color: #203b2a; }
+      .today-section .section-head { display:flex; flex-direction:column; align-items:stretch; gap:16px; text-align:center; padding:0 0 22px; margin:0 0 22px; }
+      .today-section .section-head h2 { font-size:28px; color:#203b2a; line-height:1.35; }
+      .today-section .count { font-size:17px; color:#435c48; }
+      .today-section .date-navigation { display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; margin:0; }
+      .today-section .date-navigation > span { grid-column:1 / -1; grid-row:1; font-size:20px; font-weight:600; color:#203b2a; }
+      .today-section .date-navigation button { width:100%; height:auto; min-height:48px; padding:8px 10px; border:1px solid #82977c; border-radius:12px; background:#fafbf7; font-size:18px; color:#254530; }
+      .today-section .course.featured { display:block; padding:0; min-height:0; }
+      .today-section .course-top { justify-content:center; margin:0 0 20px; }
+      .today-section .course-heading { text-align:center; }
+      .today-section .course-heading h3 { font-size:30px; line-height:1.4; color:#203b2a; }
+      .today-section .pickup-times { display:grid; gap:12px; margin-bottom:24px; }
+      .today-section .pickup-time { background:#fffef9; border:1px solid #c4d0b8; border-radius:16px; padding:14px 18px; }
+      .today-section .pickup-label { display:block; font-size:18px; font-weight:650; margin-bottom:8px; }
+      .today-section .pickup-value { display:flex; align-items:center; gap:12px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+      .today-section .pickup-value svg { width:30px; height:30px; flex-shrink:0; }
+      .today-section .pickup-period { font-size:24px; font-weight:650; }
+      .today-section .pickup-value strong { font-size:44px; line-height:1.2; letter-spacing:-1px; }
+      .today-section .pickup-provider { border-top:1px solid #b9c8b0; padding-top:20px; margin-top:6px; font-size:23px; line-height:1.4; font-weight:750; overflow-wrap:anywhere; }
+      .today-section .location { font-size:18px; line-height:1.55; color:#344c3b; margin:8px 0 18px; align-items:flex-start; overflow-wrap:anywhere; }
+      .today-section .location svg { width:23px; height:26px; flex-shrink:0; margin-top:2px; color:#365b40; }
+      .today-section .today-cards .course.featured .navigate { display:flex; justify-content:center; align-items:center; gap:12px; width:100%; min-height:60px; margin:18px 0 0; padding:14px 18px; border:0; border-radius:14px; background:#31573c; color:white; font-size:23px; font-weight:700; }
+      .today-section .featured .navigate svg { width:30px; height:30px; color:white; }
+      .today-section .note, .today-section .change { font-size:17px; line-height:1.5; }
+      .today-section .course.featured + .course.featured { margin-top:28px; padding-top:28px; }
+      .today-section .back-today { min-height:48px; font-size:18px; padding:10px 18px; }
+      .today-section button:focus-visible { outline:3px solid #b16a18; outline-offset:3px; }
+      @media(max-width:650px) { .today-section { padding:22px 18px 24px; } }
+      @media(max-width:360px) {
+        .today-section { padding:20px 12px; }
+        .today-section .pickup-time { padding:14px 12px; }
+        .today-section .pickup-value { gap:8px; }
+        .today-section .pickup-value strong { font-size:36px; }
+        .today-section .pickup-period { font-size:21px; }
+        .today-section .pickup-value svg { width:25px; height:25px; }
+      }
+
+      /* Daily date navigation: inline arrows around the date. */
+      .today-section .date-navigation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .today-section .date-navigation > span {
+        flex: 1;
+        text-align: center;
+      }
+      .today-section .date-navigation button {
+        flex: 0 0 44px;
+        width: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        font-size: 30px;
+        line-height: 1;
+      }
+      .today-section .date-navigation button:hover,
+      .today-section .date-navigation button:active {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      /* Weekly date navigation matches the daily row; retain existing type sizes. */
+      .week-section .week-toolbar { margin: 0 0 16px; }
+      .week-section .week-paging { width: 100%; align-items: center; justify-content: space-between; gap: 8px; }
+      .week-section .week-paging button {
+        border: 0; border-radius: 0; background: transparent; box-shadow: none;
+        min-height: 44px;
+      }
+      .week-section .week-paging button:first-child,
+      .week-section .week-paging button:last-child {
+        flex: 0 0 44px; width: 44px; min-width: 44px; padding: 0;
+      }
+      .week-section .week-paging .week-range {
+        flex: 1; margin: 0; padding: 0; text-align: center;
+        font-size: 14px; font-weight: 400; color: var(--ink);
+      }
+      .week-section .week-paging button:hover,
+      .week-section .week-paging button:active { background: transparent; box-shadow: none; }
+
+      /* Center both section titles without changing course details or type sizes. */
+      .today-section .section-head > div:first-child,
+      .week-section .section-head > div:first-child {
+        width: 100%;
+        text-align: center;
+      }
+      .today-section #today-heading,
+      .week-section #week-heading {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+      .week-section .section-head {
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* A quiet dashed divider between daily and weekly schedules. */
+      .today-section + .week-section::before {
+        content: "";
+        display: block;
+        width: calc(100% - 32px);
+        height: 1px;
+        margin: -18px auto 28px;
+        background: repeating-linear-gradient(to right, #b9c7b3 0 5px, transparent 5px 11px);
+        pointer-events: none;
+      }
+
+      /* Center the title itself; the adjacent count must not shift its midpoint. */
+      .today-section #today-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        column-gap: 8px;
+        margin-inline: 0;
+        padding-inline: 0;
+      }
+      .today-section #today-heading .section-title-text {
+        grid-column: 2;
+        white-space: nowrap;
+        text-align: center;
+      }
+      .today-section #today-heading .count {
+        grid-column: 3;
+        justify-self: start;
+        white-space: nowrap;
+        margin: 0;
+      }
+      .week-section #week-heading {
+        display: block;
+        width: 100%;
+        margin-inline: 0;
+        padding-inline: 0;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -15856,7 +15998,15 @@ Error generating stack: ` +
                 p.default.createElement("h3", null, l.name),
               ),
             ),
-            p.default.createElement(
+            t ? p.default.createElement("div", { className: "pickup-times" },
+              ...[["上课时间", l.start], ["下课时间", l.end]].map(([label, value]) =>
+                p.default.createElement("div", { className: "pickup-time", key: label },
+                  p.default.createElement("span", { className: "pickup-label" }, label),
+                  p.default.createElement("div", { className: "pickup-value" },
+                    p.default.createElement(Ch, null),
+                    p.default.createElement("span", { className: "pickup-period" }, Pd(value)),
+                    p.default.createElement("strong", null, Td(value)))))
+            ) : p.default.createElement(
               "div",
               { className: "time" },
               p.default.createElement(Ch, null),
@@ -15872,6 +16022,7 @@ Error generating stack: ` +
                 { className: "change" },
                 "\u8BFE\u7A0B\u5B89\u6392\u6709\u8C03\u6574",
               ),
+            t && l.provider && p.default.createElement("div", { className: "pickup-provider" }, l.provider),
             p.default.createElement(
               "div",
               { className: "location" },
@@ -15893,8 +16044,8 @@ Error generating stack: ` +
                 "aria-label": `\u5BFC\u822A\u5230${l.name}\u8BFE\u7A0B\u5730\u70B9`,
               },
               p.default.createElement(Oh, null),
-              "\u5BFC\u822A ",
-              p.default.createElement("span", { "aria-hidden": "true" }, "\u2197"),
+              t ? "导航去上课" : "\u5BFC\u822A ",
+              !t && p.default.createElement("span", { "aria-hidden": "true" }, "\u2197"),
             ),
           );
         }
@@ -15992,7 +16143,8 @@ Error generating stack: ` +
                   p.default.createElement(
                     "h2",
                     { id: "today-heading" },
-                    z === n ? "\u4ECA\u65E5\u8BFE\u7A0B" : "\u5F53\u5929\u8BFE\u7A0B",
+                    p.default.createElement("span", { className: "section-title-text" },
+                      z === n ? "\u4ECA\u65E5\u8BFE\u7A0B" : "\u5F53\u5929\u8BFE\u7A0B"),
                     p.default.createElement("span", { className: "count" }, q.length, " \u8282"),
                   ),
                 ),
@@ -16006,7 +16158,7 @@ Error generating stack: ` +
                       onClick: () => f(Ut(z, -1)),
                       disabled: !z,
                     },
-                    "\u2039",
+                    "‹",
                   ),
                   p.default.createElement(
                     "span",
@@ -16020,7 +16172,7 @@ Error generating stack: ` +
                       onClick: () => f(Ut(z, 1)),
                       disabled: !z,
                     },
-                    "\u203A",
+                    "›",
                   ),
                 ),
               ),
@@ -16080,18 +16232,18 @@ Error generating stack: ` +
                     { "aria-label": "\u4E0A\u4E00\u5468", onClick: () => f(Ut(z, -7)) },
                     "\u2039",
                   ),
-                  p.default.createElement("button", { onClick: () => f(n) }, "\u672C\u5468"),
+                  p.default.createElement("button", {
+                    className: "week-range",
+                    onClick: () => f(n),
+                    "aria-label": "回到本周",
+                    title: "回到本周"
+                  }, E ? `${Ue(E)} \u2014 ${Ue(Ut(E, 6))}` : ""),
                   p.default.createElement(
                     "button",
                     { "aria-label": "\u4E0B\u4E00\u5468", onClick: () => f(Ut(z, 7)) },
                     "\u203A",
                   ),
                 ),
-              ),
-              p.default.createElement(
-                "span",
-                { className: "week-range" },
-                E ? `${Ue(E)} \u2014 ${Ue(Ut(E, 6))}` : "",
               ),
               p.default.createElement(
                 "div",
