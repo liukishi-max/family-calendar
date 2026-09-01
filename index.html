@@ -1882,7 +1882,8 @@
         }
         .today-section .section-head {
           flex-direction: column;
-          align-items: flex-start;
+          align-items: center;
+          text-align: center;
           gap: 6px;
           margin-bottom: 8px;
         }
@@ -2265,10 +2266,12 @@
       }
       @media (max-width: 650px) {
         .today-section {
-          min-height: 70vh;
-          min-height: 70svh;
           display: flex;
           flex-direction: column;
+        }
+        .today-section:has(.empty) {
+          min-height: 70vh;
+          min-height: 70svh;
         }
         .today-section .today-cards {
           display: flex;
@@ -2523,6 +2526,88 @@
         }
         .aw-day-event {
           padding: 4px 6px;
+        }
+      }
+
+      /* 当天课程：加大留白、优化字体、多节课时卡片背景交替 */
+      .today-section {
+        padding: 30px 26px 32px;
+      }
+      .today-section .section-head {
+        margin-bottom: 22px;
+      }
+      .today-section .today-cards {
+        display: block;
+      }
+      .today-section .course.featured {
+        padding: 20px 18px;
+        border-radius: 12px;
+        background: transparent;
+        border-top: 0;
+      }
+      .today-section .course.featured:nth-child(odd) {
+        background: var(--white);
+        box-shadow: 0 1px 3px rgba(36, 61, 53, 0.06);
+      }
+      .today-section .course.featured:nth-child(even) {
+        background: #e3ebda;
+      }
+      .today-section .course.featured + .course.featured {
+        margin-top: 14px;
+        padding-top: 20px;
+        border-top: 0;
+      }
+      .today-section .course-heading h3 {
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+        color: #1f362e;
+      }
+      .today-section .featured .time {
+        margin-top: 10px;
+        font-size: 17px;
+        font-weight: 500;
+        color: #2d5947;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.1px;
+      }
+      .today-section .address-details {
+        margin: 10px 0 4px;
+      }
+      .today-section .address-details summary {
+        font-size: 14px;
+        color: #67756c;
+        font-weight: 400;
+      }
+      .today-section .address-details summary > span {
+        color: #4d7a3f;
+        font-weight: 500;
+      }
+      .today-section .featured .navigate {
+        margin-top: 6px;
+      }
+      .today-section .back-today {
+        margin-bottom: 10px;
+      }
+      @media (max-width: 650px) {
+        .today-section {
+          padding: 26px 18px 28px;
+        }
+        .today-section .section-head {
+          margin-bottom: 20px;
+        }
+        .today-section .course.featured {
+          padding: 18px 16px;
+        }
+        .today-section .course.featured + .course.featured {
+          margin-top: 12px;
+          padding-top: 18px;
+        }
+        .today-section .course-heading h3 {
+          font-size: 20px;
+        }
+        .today-section .featured .time {
+          font-size: 16px;
         }
       }
     </style>
