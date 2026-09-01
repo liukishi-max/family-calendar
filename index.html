@@ -2582,6 +2582,7 @@
       .today-section .address-details summary > span {
         color: #4d7a3f;
         font-weight: 500;
+        font-size: 14px;
       }
       .today-section .featured .navigate {
         margin-top: 6px;
@@ -15664,6 +15665,14 @@ Error generating stack: ` +
           let [t, a] = l.split(":").map(Number);
           return `${t < 12 ? "\u4E0A\u5348" : t < 18 ? "\u4E0B\u5348" : "\u665A\u4E0A"} ${t % 12 || 12}:${String(a).padStart(2, "0")}`;
         }
+        function Td(l) {
+          let [t, a] = l.split(":").map(Number);
+          return `${t % 12 || 12}:${String(a).padStart(2, "0")}`;
+        }
+        function Pd(l) {
+          let t = Number(l.split(":")[0]);
+          return t < 12 ? "\u4E0A\u5348" : t < 18 ? "\u4E0B\u5348" : "\u665A\u4E0A";
+        }
         function Nu(l) {
           let [t, a] = l.split(":").map(Number);
           return t * 60 + a;
@@ -15757,7 +15766,7 @@ Error generating stack: ` +
               " ",
               p.default.createElement("span", null, "\u2014"),
               " ",
-              yi(l.end),
+              Pd(l.start) === Pd(l.end) ? Td(l.end) : yi(l.end),
             ),
             l.changed &&
               p.default.createElement(
