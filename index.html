@@ -2162,26 +2162,27 @@
         margin-top: 4px;
       }
 
-      /* 名称与详情留出层次，导航使用无底色地图图标 */
+      /* 名称与详情留出层次，导航做成实心圆角按钮 */
       .today-cards .featured .time {
         margin-top: 12px;
       }
       .today-cards .featured .navigate,
       .today-cards:has(> .course:only-child) .featured .navigate {
-        min-width: 78px;
-        min-height: 44px;
-        padding: 5px 2px;
-        margin-top: 4px;
+        min-width: 0;
+        min-height: 40px;
+        padding: 8px 18px 8px 12px;
+        margin-top: 10px;
         border: 0;
-        background: transparent;
-        color: #345e45;
+        background: #315941;
+        color: var(--white);
         gap: 8px;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: 600;
+        border-radius: 999px;
       }
       .today-cards .featured .navigate svg {
-        width: 28px;
-        height: 28px;
+        width: 20px;
+        height: 20px;
       }
 
       /* 今日课程标题与日期共用一条浅绿色背景 */
@@ -2529,33 +2530,36 @@
         }
       }
 
-      /* 当天课程：加大留白、优化字体、多节课时卡片背景交替 */
+      /* 当天课程：加大留白、优化字体；多节课时用细线分隔，不再嵌套卡片背景 */
       .today-section {
         padding: 30px 26px 32px;
       }
       .today-section .section-head {
-        margin-bottom: 22px;
+        margin-bottom: 14px;
+        background: transparent;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        padding: 0;
+        border-radius: 0;
+      }
+      .today-section .date-navigation {
+        gap: 4px;
       }
       .today-section .today-cards {
         display: block;
       }
       .today-section .course.featured {
-        padding: 20px 18px;
-        border-radius: 12px;
+        padding: 4px 2px 0;
+        border-radius: 0;
         background: transparent;
+        box-shadow: none;
         border-top: 0;
-      }
-      .today-section .course.featured:nth-child(odd) {
-        background: var(--white);
-        box-shadow: 0 1px 3px rgba(36, 61, 53, 0.06);
-      }
-      .today-section .course.featured:nth-child(even) {
-        background: #e3ebda;
       }
       .today-section .course.featured + .course.featured {
-        margin-top: 14px;
-        padding-top: 20px;
-        border-top: 0;
+        margin-top: 22px;
+        padding-top: 22px;
+        border-top: 1px solid #d7e0cd;
       }
       .today-section .course-heading h3 {
         font-size: 21px;
@@ -2578,14 +2582,17 @@
         font-size: 14px;
         color: #67756c;
         font-weight: 400;
+        gap: 8px;
+      }
+      .today-section .address-details summary svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
       }
       .today-section .address-details summary > span {
         color: #4d7a3f;
         font-weight: 500;
         font-size: 14px;
-      }
-      .today-section .featured .navigate {
-        margin-top: 6px;
       }
       .today-section .back-today {
         margin-bottom: 10px;
@@ -2595,13 +2602,13 @@
           padding: 26px 18px 28px;
         }
         .today-section .section-head {
-          margin-bottom: 20px;
+          margin-bottom: 12px;
         }
         .today-section .course.featured {
-          padding: 18px 16px;
+          padding: 2px 0 0;
         }
         .today-section .course.featured + .course.featured {
-          margin-top: 12px;
+          margin-top: 18px;
           padding-top: 18px;
         }
         .today-section .course-heading h3 {
